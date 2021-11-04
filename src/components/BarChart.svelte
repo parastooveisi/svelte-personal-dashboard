@@ -97,7 +97,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    padding: 1em 6em 4em 2em;
+    padding: 2em 2em 3em 5em;
     box-sizing: border-box;
   }
 
@@ -121,9 +121,11 @@
   }
 
   .y.label {
-    left: calc(100% + 1em);
+    left: -4.2em;
     bottom: -0.5em;
     line-height: 1;
+    text-align: right;
+    width: 4em;
   }
 
   .x.label {
