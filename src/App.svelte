@@ -3,6 +3,7 @@
   import NavBar from "./components/NavBar.svelte";
   import TopNav from "./components/TopNav.svelte";
   import TopNotification from "./components/TopNotification.svelte";
+  import Graphs from "./components/Graphs.svelte";
   let items = ["Home", "Graphs"];
   let activeItems = "Home";
   const tabChange = (e) => {
@@ -20,6 +21,7 @@
   <main role="main" class="w-full h-full flex-grow pt-1 px-3">
     <TopNav />
     <TopNotification />
+
     {#if activeItems === "Home"}
       <h1 class="text-3xl md:text-5xl mb-4 font-extrabold" id="home">
         Personal Dashboard
@@ -29,5 +31,6 @@
         New Tab
       </h1>
     {/if}
+    <Graphs />
   </main>
 </div>
