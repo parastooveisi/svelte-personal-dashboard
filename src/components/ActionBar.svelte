@@ -1,4 +1,7 @@
 <script lang="ts">
+  import AddUserModal from "./AddUserModal.svelte";
+
+  let showModal = false;
   let people = [
     { initial: "P", color: "indigo-700" },
     { initial: "J", color: "pink-700" },
@@ -7,8 +10,13 @@
     { initial: "C", color: "black" },
   ];
   let sortDirection = "up";
+
   let toggleSortDirection = () => {
     sortDirection = sortDirection === "up" ? "down" : "up";
+  };
+
+  const handleToggleModal = () => {
+    showModal = !showModal;
   };
 </script>
 
@@ -19,7 +27,7 @@
         <li class="ml-{i * 4}"><span class="bg-{person.color}">{person.initial}</span></li>
       {/each}
       <li class="add-new-person">
-        <button class="rounded-full h-6 w-6 flex items-center justify-center bg-green-600 text-gray-100">+</button>
+        <button class="rounded-full h-6 w-6 flex items-center justify-center bg-green-600 text-gray-100" on:click={handleToggleModal}>+</button>
       </li>
     </ul>
   </div>
@@ -29,6 +37,29 @@
     <button class="bg-indigo-700 text-gray-200 py-2 px-4 rounded-md">Add +</button>
   </div>
 </div>
+
+<AddUserModal title="Add a new user" open={showModal} on:close={() => handleToggleModal()}>
+  <svelte:fragment slot="body">
+    <form class="flex flex-col">
+      <label for="first_name">First Name</label>
+      <input
+        id="first_name"
+        type="text"
+        name="first_name"
+        class="input border border-gray-400 appearance-none rounded w-full px-3 py-3 mb-3 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600"
+        autofocus
+      />
+      <label for="last_name">Last Name</label>
+      <input
+        id="last_name"
+        type="text"
+        name="last_name"
+        class="input border border-gray-400 appearance-none rounded w-full px-3 py-3 mb-3 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600"
+      />
+      <button type="submit" class="bg-green-500 rounded-md p-4">Save</button>
+    </form>
+  </svelte:fragment>
+</AddUserModal>
 
 <style lang="postcss">
   li {
