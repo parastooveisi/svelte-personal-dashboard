@@ -9,28 +9,23 @@
   const tabChange = (e) => {
     activeItems = e.detail;
   };
+  import ActionBar from "./components/ActionBar.svelte";
 </script>
 
 <TailwindCSS />
 
-<div
-  class="w-full flex flex-col sm:flex-row flex-wrap sm:flex-nowrap py-4 flex-grow"
->
+<div class="w-full flex flex-col sm:flex-row flex-wrap sm:flex-nowrap py-4 flex-grow">
   <NavBar on:tabChange={tabChange} {activeItems} {items} />
 
   <main role="main" class="w-full h-full flex-grow pt-1 px-3">
     <TopNav />
     <TopNotification />
-
     {#if activeItems === "Home"}
-      <h1 class="text-3xl md:text-5xl mb-4 font-extrabold" id="home">
-        Personal Dashboard
-      </h1>
+      <h1 class="text-3xl md:text-5xl mb-4 font-extrabold" id="home">Personal Dashboard</h1>
     {:else if activeItems === "Graphs"}
-      <h1 class="text-3xl md:text-5xl mb-4 font-extrabold" id="graphs">
-        New Tab
-      </h1>
+      <h1 class="text-3xl md:text-5xl mb-4 font-extrabold" id="graphs">New Tab</h1>
     {/if}
+    <ActionBar />
     <Graphs />
   </main>
 </div>
