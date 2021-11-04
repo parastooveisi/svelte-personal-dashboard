@@ -94,21 +94,21 @@
 
 <div class="chart {size}" bind:this={el} bind:clientWidth={w}>
   <div class="background">
-    <Pancake.Chart x1={$x1 - 2.5} x2={$x2 + 2.5} y1={0} y2={maxExpense}>
+    <Pancake.Chart x1={$x1 - 1} x2={$x2} y1={0} y2={maxExpense}>
       <!-- men -->
-      <Pancake.Columns data={$income} width={3}>
+      <Pancake.Columns data={$income} width={2}>
         <div class="column income" />
       </Pancake.Columns>
 
       <!-- women -->
-      <Pancake.Columns data={$expenses} width={3}>
+      <Pancake.Columns data={$expenses} width={2}>
         <div class="column expenses" />
       </Pancake.Columns>
     </Pancake.Chart>
   </div>
 
   <div class="foreground">
-    <Pancake.Chart x1={$x1 - 2.5} x2={$x2 + 2.5} y1={0} y2={maxIncome}>
+    <Pancake.Chart x1={$x1 - 0.5} x2={$x2 + 0.6} y1={0} y2={maxIncome}>
       <Pancake.Grid horizontal count={5} let:value let:first>
         <div class="grid-line horizontal" />
         <span class="y label">{value}</span>
@@ -182,7 +182,7 @@
   .column {
     position: absolute;
     left: 1px;
-    width: 10%;
+    width: 15%;
     left: 0;
     border-left: 1px solid rgba(255, 255, 255, 0.4);
     border-right: 1px solid rgba(255, 255, 255, 0.4);
@@ -194,12 +194,12 @@
 
   .column.income {
     background-color: #9ffe99;
-    left: 20px;
-    width: 10%;
+    left: 40px;
   }
 
   .column.expenses {
     background-color: #9f1199;
+    left: 10px;
   }
 
   .medium .slider-container span {
