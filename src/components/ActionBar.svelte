@@ -6,9 +6,13 @@
     { initial: "W", color: "blue-700" },
     { initial: "C", color: "black" },
   ];
+  let sortDirection = "up";
+  let toggleSortDirection = () => {
+    sortDirection = sortDirection === "up" ? "down" : "up";
+  };
 </script>
 
-<div>
+<div class="flex justify-between">
   <div class="avatars">
     <ul class="grid grid-flow-col auto-cols-min">
       {#each people as person, i}
@@ -18,6 +22,11 @@
         <button class="rounded-full h-6 w-6 flex items-center justify-center bg-green-600 text-gray-100">+</button>
       </li>
     </ul>
+  </div>
+  <div>
+    <button class="bg-gray-400 py-2 px-4 rounded-md" on:click={toggleSortDirection}>{sortDirection === "up" ? "🔽" : "🔼"}</button>
+    <input type="date" />
+    <button class="bg-indigo-700 text-gray-200 py-2 px-4 rounded-md">Add +</button>
   </div>
 </div>
 
