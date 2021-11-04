@@ -1,5 +1,6 @@
 <script lang="ts">
   import BarChart from "./BarChart.svelte";
+  import LineChart from "./charts/LineChart.svelte";
 </script>
 
 <div class="grid grid-cols-2">
@@ -7,6 +8,6 @@
   <div>
     <BarChart />
   </div>
-  <div class="col-span-1">Third Graph here</div>
+  <div class="col-span-2"><LineChart /></div>
   <div />
 </div>
