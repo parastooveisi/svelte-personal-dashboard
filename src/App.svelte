@@ -1,6 +1,8 @@
 <script lang="ts">
   import TailwindCSS from "./TailwindCSS.svelte";
   import NavBar from "./components/NavBar.svelte";
+  import TopNav from "./components/TopNav.svelte";
+  import TopNotification from "./components/TopNotification.svelte";
   let items = ["Home", "Graphs"];
   let activeItems = "Home";
   const tabChange = (e) => {
@@ -25,5 +27,7 @@
         New Tab
       </h1>
     {/if}
+    <TopNav />
+    <TopNotification />
   </main>
 </div>
