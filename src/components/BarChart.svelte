@@ -55,7 +55,7 @@
   $: size = w < 480 ? "small" : w < 640 ? "medium" : "large";
 </script>
 
-<div class="chart {size}" bind:this={el} bind:clientWidth={w}>
+<div class="chart {size} shadow-lg" bind:this={el} bind:clientWidth={w}>
   <div class="background">
     <Pancake.Chart x1={$x1 - 1} x2={$x2} y1={0} y2={maxExpense}>
       <!-- men -->
@@ -97,7 +97,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    padding: 3em 3em 2em 0;
+    padding: 2em 2em 3em 5em;
     box-sizing: border-box;
   }
 
@@ -121,9 +121,11 @@
   }
 
   .y.label {
-    left: calc(100% + 1em);
+    left: -4.2em;
     bottom: -0.5em;
     line-height: 1;
+    text-align: right;
+    width: 4em;
   }
 
   .x.label {
