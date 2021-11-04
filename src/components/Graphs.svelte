@@ -1,10 +1,11 @@
 <script lang="ts">
   import BarChart from "./BarChart.svelte";
+  import DonutChart from "./charts/donutChart.svelte";
   import LineChart from "./charts/LineChart.svelte";
 </script>
 
 <div class="grid grid-cols-2">
-  <div>Firts Graph here</div>
+  <div><DonutChart /></div>
   <div>
     <BarChart />
   </div>
