@@ -2,11 +2,9 @@
   import BarChart from "./BarChart.svelte";
 </script>
 
-<div class="grid grid-cols-2">
+<div class="grid grid-cols-2 mt-6">
   <div>Firts Graph here</div>
-  <div>
-    <BarChart />
-  </div>
+  <BarChart />
   <div class="col-span-1">Third Graph here</div>
   <div />
 </div>
