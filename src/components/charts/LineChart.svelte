@@ -1,6 +1,8 @@
-<script>
+<script lang="ts">
   import { scaleLinear } from "d3-scale";
   import points from "./data.js";
+
+  export let row: string;
 
   const yTicks = [0, 20, 40, 60, 80];
   const xTicks = [2008, 2012, 2016, 2020];
@@ -23,7 +25,7 @@
   $: area = `${path}L${xScale(maxX)},${yScale(0)}L${xScale(minX)},${yScale(0)}Z`;
 </script>
 
-<div class="chart" bind:clientWidth={width} bind:clientHeight={height}>
+<div class="chart {row} shadow-lg p-4" bind:clientWidth={width} bind:clientHeight={height}>
   <svg>
     <!-- y axis -->
     <g class="axis y-axis" transform="translate(0, {padding.top})">

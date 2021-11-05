@@ -20,29 +20,29 @@
 <div class="grid grid-cols-2 mt-6 gap-3">
   <div class="col-span-2 xl:col-span-1">
     {#if $chartOrder[0].name === "Bar"}
-      <BarChart />
+      <BarChart row="one" />
     {:else if $chartOrder[0].name === "Doughnut"}
-      <DonutChart />
+      <DonutChart row="one" />
     {:else}
-      <LineChart />
+      <LineChart row="one" />
     {/if}
   </div>
   <div class="col-span-2 xl:col-span-1">
     {#if $chartOrder[1].name === "Bar"}
-      <BarChart />
+      <BarChart row="one" />
     {:else if $chartOrder[1].name === "Doughnut"}
-      <DonutChart />
+      <DonutChart row="one" />
     {:else}
-      <LineChart />
+      <LineChart row="one" />
     {/if}
   </div>
-  <div class="col-span-2 shadow-lg p-4">
+  <div class="col-span-2">
     {#if $chartOrder[2].name === "Bar"}
-      <BarChart />
+      <BarChart row="two" />
     {:else if $chartOrder[2].name === "Doughnut"}
-      <DonutChart />
+      <DonutChart row="two" />
     {:else}
-      <LineChart />
+      <LineChart row="two" />
     {/if}
   </div>
 </div>

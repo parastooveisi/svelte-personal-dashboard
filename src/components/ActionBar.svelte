@@ -1,6 +1,7 @@
 <script lang="ts">
   import AddUserModal from "./AddUserModal.svelte";
   import { barChartData } from "../stores/barChartData";
+  import { charts } from "../stores/charts";
 
   let showModal = false;
   let people = [
@@ -12,8 +13,16 @@
   ];
   let sortDirection = "up";
 
-  let toggleSortDirection = () => {
+  const toggleSortDirection = () => {
     sortDirection = sortDirection === "up" ? "down" : "up";
+
+    charts.update((_n) => {
+      if (sortDirection === "down") {
+        return [{ name: "Line" }, { name: "Doughnut" }, { name: "Bar" }];
+      } else {
+        return [{ name: "Doughnut" }, { name: "Bar" }, { name: "Line" }];
+      }
+    });
   };
 
   const handleToggleModal = () => {

@@ -2,8 +2,10 @@
   // @ts-nocheck
   import * as Pancake from "@sveltejs/pancake";
   import { spring } from "svelte/motion";
-  import { writable } from "svelte/store";
   import { barChartData, BarChartEntry } from "../stores/barChartData";
+
+  export let row;
+
   let el;
   let w;
   let max;
@@ -60,7 +62,7 @@
   }
 </script>
 
-<div class="chart shadow-lg h-full" bind:this={el} bind:clientWidth={w}>
+<div class="chart {row} shadow-lg h-full" bind:this={el} bind:clientWidth={w}>
   <div class="background">
     <Pancake.Chart x1={$x1 - 0.5} x2={$x2} y1={0} y2={$maxIncome}>
       <!-- men -->
@@ -94,6 +96,10 @@
     position: relative;
     width: 100%;
     margin: 0 0 36px 0;
+    @apply h-96;
+  }
+
+  .chart.two {
     @apply h-96;
   }
 
