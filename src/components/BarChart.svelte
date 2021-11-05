@@ -1,4 +1,4 @@
-<script lang="ts">
+<script>
   import * as Pancake from "@sveltejs/pancake";
   import { spring } from "svelte/motion";
 
@@ -17,7 +17,6 @@
   const maxIncome = Math.max(...data.map((d) => d.income));
 
   const years = data.map((d) => d.year);
-  let year = year1;
 
   let el;
   let w = 320;
@@ -55,7 +54,7 @@
   $: size = w < 480 ? "small" : w < 640 ? "medium" : "large";
 </script>
 
-<div class="chart {size} shadow-lg" bind:this={el} bind:clientWidth={w}>
+<div class="chart {size} shadow-lg h-full" bind:this={el} bind:clientWidth={w}>
   <div class="background">
     <Pancake.Chart x1={$x1 - 1} x2={$x2} y1={0} y2={maxExpense}>
       <!-- men -->
@@ -88,8 +87,14 @@
   .chart {
     position: relative;
     width: 100%;
-    height: 300px;
     margin: 0 0 36px 0;
+    @apply h-96;
+  }
+
+  @media (min-width: 1280px) {
+    .chart {
+      height: 100%;
+    }
   }
 
   .background,

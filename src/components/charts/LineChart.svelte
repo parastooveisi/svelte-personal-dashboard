@@ -20,9 +20,7 @@
   $: minX = points[0].x;
   $: maxX = points[points.length - 1].x;
   $: path = `M${points.map((p) => `${xScale(p.x)},${yScale(p.y)}`).join("L")}`;
-  $: area = `${path}L${xScale(maxX)},${yScale(0)}L${xScale(minX)},${yScale(
-    0
-  )}Z`;
+  $: area = `${path}L${xScale(maxX)},${yScale(0)}L${xScale(minX)},${yScale(0)}Z`;
 </script>
 
 <div class="chart" bind:clientWidth={width} bind:clientHeight={height}>
@@ -30,10 +28,7 @@
     <!-- y axis -->
     <g class="axis y-axis" transform="translate(0, {padding.top})">
       {#each yTicks as tick}
-        <g
-          class="tick tick-{tick}"
-          transform="translate(0, {yScale(tick) - padding.bottom})"
-        >
+        <g class="tick tick-{tick}" transform="translate(0, {yScale(tick) - padding.bottom})">
           <line x2="100%" />
           <text y="-4">{tick}</text>
         </g>
@@ -43,10 +38,7 @@
     <!-- x axis -->
     <g class="axis x-axis">
       {#each xTicks as tick}
-        <g
-          class="tick tick-{tick}"
-          transform="translate({xScale(tick)},{height})"
-        >
+        <g class="tick tick-{tick}" transform="translate({xScale(tick)},{height})">
           <line y1="-{height}" y2="-{padding.bottom}" x1="0" x2="0" />
           <text y="-2">{tick}</text>
         </g>
@@ -60,11 +52,9 @@
 </div>
 
 <style>
-  .chart,
-  h2,
-  p {
+  .chart {
+    height: 100%;
     width: 100%;
-    max-width: 500px;
     margin-left: auto;
     margin-right: auto;
   }

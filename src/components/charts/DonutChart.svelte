@@ -1,9 +1,8 @@
 <script>
-  import chartjs from "chart.js";
-  let chartData;
+  import Chart from "chart.js";
   import { onMount } from "svelte";
 
-  var data = {
+  const chartData = {
     datasets: [
       {
         data: [11, 16, 7, 14],
@@ -16,22 +15,21 @@
   let ctx;
   let chartCanvas;
 
-  onMount(async (promise) => {
+  onMount(async (_promise) => {
     ctx = chartCanvas.getContext("2d");
-    var chart = new chartjs(ctx, {
+    new Chart(ctx, {
       type: "polarArea",
-      data: data,
+      data: chartData,
     });
   });
 </script>
 
-<div id="chart">
+<div id="chart" class="shadow-lg pb-4">
   <canvas bind:this={chartCanvas} id="myChart" />
 </div>
 
 <style>
   #chart {
-    height: 400px;
-    width: 400px;
+    width: 100%;
   }
 </style>
