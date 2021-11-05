@@ -1,4 +1,6 @@
-<script>
+<script lang="ts">
+  // @ts-nocheck
+
   import * as Pancake from "@sveltejs/pancake";
   import { spring } from "svelte/motion";
 
@@ -137,11 +139,6 @@
     left: -2em;
     bottom: 5px;
     text-align: center;
-  }
-
-  .background .x.label {
-    color: white;
-    font-size: 10px;
   }
 
   .foreground .x.label {

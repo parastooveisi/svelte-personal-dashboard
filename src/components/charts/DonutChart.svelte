@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   import Chart from "chart.js";
   import { onMount } from "svelte";
 
@@ -15,17 +15,20 @@
   let ctx;
   let chartCanvas;
 
-  onMount(async (_promise) => {
+  onMount(() => {
     ctx = chartCanvas.getContext("2d");
-    new Chart(ctx, {
+    new (Chart as any)(ctx, {
       type: "polarArea",
       data: chartData,
     });
   });
 </script>
 
-<div id="chart" class="shadow-lg pb-4">
-  <canvas bind:this={chartCanvas} id="myChart" />
+<div>
+  <h1 class="text-2xl text-center">Population Growth</h1>
+  <div id="chart" class="shadow-lg pb-4">
+    <canvas bind:this={chartCanvas} id="myChart" />
+  </div>
 </div>
 
 <style>
