@@ -6,7 +6,7 @@
   };
 </script>
 
-<nav class="mb-4">
+<nav class="my-3">
   <ul class="flex justify-end items-center">
     <li class="ml-2">
       <button title="Search" class="rounded-full h-8 w-8 flex items-center justify-center bg-gray-200">🔎</button>

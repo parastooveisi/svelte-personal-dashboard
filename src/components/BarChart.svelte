@@ -3,12 +3,13 @@
   import { spring } from "svelte/motion";
 
   const data = [
-    { year: 2021, income: 2000, expenses: 1000 },
-    { year: 2020, income: 1300, expenses: 800 },
+    { year: 2021, income: 4000, expenses: 1000 },
+    { year: 2020, income: 3888, expenses: 800 },
     { year: 2019, income: 3500, expenses: 1800 },
     { year: 2018, income: 2200, expenses: 4000 },
     { year: 2017, income: 2000, expenses: 1000 },
     { year: 2016, income: 2000, expenses: 1000 },
+    { year: 2015, income: 2000, expenses: 1000 },
   ];
 
   const maxExpense = Math.max(...data.map((d) => d.expenses));
@@ -50,28 +51,26 @@
   $: $x1 = year0;
   $: $income = getIncome();
   $: $expenses = getExpenses();
-  console.log($income);
-  $: size = w < 480 ? "small" : w < 640 ? "medium" : "large";
 </script>
 
-<div class="chart {size} shadow-lg h-full" bind:this={el} bind:clientWidth={w}>
+<div class="chart shadow-lg h-full" bind:this={el} bind:clientWidth={w}>
   <div class="background">
-    <Pancake.Chart x1={$x1 - 1} x2={$x2} y1={0} y2={maxExpense}>
+    <Pancake.Chart x1={$x1 - 0.5} x2={$x2} y1={0} y2={maxExpense}>
       <!-- men -->
-      <Pancake.Columns data={$income} width={2}>
+      <Pancake.Columns data={$income} width={0.2}>
         <div class="column income" />
       </Pancake.Columns>
 
       <!-- women -->
-      <Pancake.Columns data={$expenses} width={2}>
+      <Pancake.Columns data={$expenses} width={0.2}>
         <div class="column expenses" />
       </Pancake.Columns>
     </Pancake.Chart>
   </div>
 
   <div class="foreground">
-    <Pancake.Chart x1={$x1 - 0.5} x2={$x2 + 0.6} y1={0} y2={maxIncome}>
-      <Pancake.Grid horizontal count={5} let:value let:first>
+    <Pancake.Chart x1={$x1 - 0.5} x2={$x2} y1={0} y2={maxIncome}>
+      <Pancake.Grid horizontal count={6} let:value let:first>
         <div class="grid-line horizontal" />
         <span class="y label">{value}</span>
       </Pancake.Grid>
@@ -134,7 +133,7 @@
   }
 
   .x.label {
-    width: 4em;
+    width: 4rem;
     left: -2em;
     bottom: 5px;
     text-align: center;
@@ -152,7 +151,7 @@
   .column {
     position: absolute;
     left: 0px;
-    width: 15%;
+    width: 1rem;
     border-left: 1px solid rgba(255, 255, 255, 0.4);
     border-right: 1px solid rgba(255, 255, 255, 0.4);
     box-sizing: border-box;
@@ -163,19 +162,10 @@
 
   .column.income {
     @apply bg-green-400;
-    left: 40px;
+    left: 100%;
   }
-
   .column.expenses {
     @apply bg-pink-400;
-    left: 10px;
-  }
-
-  .medium .slider-container span {
-    font-size: 3.5em;
-  }
-
-  .large .slider-container span {
-    font-size: 5em;
+    left: 0;
   }
 </style>
