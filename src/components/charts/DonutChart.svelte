@@ -25,13 +25,13 @@
   });
 </script>
 
-<div id="chart">
+<div id="chart" class="shadow-lg">
   <canvas bind:this={chartCanvas} id="myChart" />
 </div>
 
 <style>
   #chart {
-    height: 400px;
-    width: 400px;
+    height: 300px;
+    width: 100%;
   }
 </style>

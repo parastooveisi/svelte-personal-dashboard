@@ -4,7 +4,7 @@
   import LineChart from "./charts/LineChart.svelte";
 </script>
 
-<div class="grid grid-cols-2 mt-6">
+<div class="grid grid-cols-2 mt-6 gap-3">
   <div><DonutChart /></div>
   <div>
     <BarChart />
