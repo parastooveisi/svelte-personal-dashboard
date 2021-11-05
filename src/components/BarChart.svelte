@@ -1,32 +1,43 @@
 <script lang="ts">
   // @ts-nocheck
-
   import * as Pancake from "@sveltejs/pancake";
   import { spring } from "svelte/motion";
-
-  const data = [
-    { year: 2021, income: 4000, expenses: 1000 },
-    { year: 2020, income: 3888, expenses: 800 },
-    { year: 2019, income: 3500, expenses: 1800 },
-    { year: 2018, income: 2200, expenses: 4000 },
-    { year: 2017, income: 2000, expenses: 1000 },
-    { year: 2016, income: 2000, expenses: 1000 },
-    { year: 2015, income: 2000, expenses: 1000 },
-  ];
-
-  const maxExpense = Math.max(...data.map((d) => d.expenses));
-  const year0 = Math.min(...data.map((d) => d.year));
-  const year1 = Math.max(...data.map((d) => d.year));
-  const maxIncome = Math.max(...data.map((d) => d.income));
-
-  const years = data.map((d) => d.year);
-
+  import { barChartData, BarChartEntry } from "../stores/barChartData";
   let el;
-  let w = 320;
+  let w;
+
+  let year0;
+  let year1;
+  let years;
+  let maxExpense;
+  let maxIncome;
+
+  const x1 = spring();
+  const x2 = spring();
+  const data = spring();
+  const income = spring<BarChartEntry[]>();
+  const expenses = spring<BarChartEntry[]>();
+
+  $: $data;
+  $: $x2 = year1;
+  $: $x1 = year0;
+  $: $expenses;
+  $: $income;
+
+  barChartData.subscribe((value: BarChartEntry[]) => {
+    $data = value;
+    maxExpense = Math.max(...$data.map((d) => d.expenses));
+    year0 = Math.min(...$data.map((d) => d.year));
+    year1 = Math.max(...$data.map((d) => d.year));
+    maxIncome = Math.max(...$data.map((d) => d.income));
+    years = $data.map((d) => d.year);
+    $income = getIncome();
+    $expenses = getExpenses();
+  });
 
   function getIncome() {
     return years.map((year) => {
-      const d = data.find((d) => d.year === year);
+      const d = $data.find((d) => d.year === year);
       return {
         x: year,
         y: d ? d.income : 0,
@@ -36,35 +47,25 @@
 
   function getExpenses() {
     return years.map((year) => {
-      const d = data.find((d) => d.year === year);
+      const d = $data.find((d) => d.year === year);
       return {
         x: year,
         y: d ? d.expenses : 0,
       };
     });
   }
-
-  const x1 = spring();
-  const x2 = spring();
-  const income = spring();
-  const expenses = spring();
-
-  $: $x2 = year1;
-  $: $x1 = year0;
-  $: $income = getIncome();
-  $: $expenses = getExpenses();
 </script>
 
 <div class="chart shadow-lg h-full" bind:this={el} bind:clientWidth={w}>
   <div class="background">
     <Pancake.Chart x1={$x1 - 0.5} x2={$x2} y1={0} y2={maxExpense}>
       <!-- men -->
-      <Pancake.Columns data={$income} width={0.2}>
+      <Pancake.Columns data={$income} width={1.0 / $data.length}>
         <div class="column income" />
       </Pancake.Columns>
 
       <!-- women -->
-      <Pancake.Columns data={$expenses} width={0.2}>
+      <Pancake.Columns data={$expenses} width={1.0 / $data.length}>
         <div class="column expenses" />
       </Pancake.Columns>
     </Pancake.Chart>
@@ -72,7 +73,7 @@
 
   <div class="foreground">
     <Pancake.Chart x1={$x1 - 0.5} x2={$x2} y1={0} y2={maxIncome}>
-      <Pancake.Grid horizontal count={6} let:value let:first>
+      <Pancake.Grid horizontal count={5} let:value let:first>
         <div class="grid-line horizontal" />
         <span class="y label">{value}</span>
       </Pancake.Grid>
@@ -135,7 +136,7 @@
   }
 
   .x.label {
-    width: 4rem;
+    /* width: 4rem; */
     left: -2em;
     bottom: 5px;
     text-align: center;

@@ -29,7 +29,7 @@
           </span>
         </button>
 
-        <div class="dropdown {menuState === 'open' ? 'opacity-100' : 'opacity-0'} focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+        <div class="dropdown {menuState === 'open' ? '' : 'hidden'} focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
           <div class="py-1" role="none">
             <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-2">Profile</a>
             <a href="#" class="text-gray-700 block px-4 py-2 text-sm" role="menuitem" tabindex="-1" id="menu-item-3">Settings</a>
