@@ -2,6 +2,8 @@
   import Chart from "chart.js";
   import { onMount } from "svelte";
 
+  export let row: string;
+
   const chartData = {
     datasets: [
       {
@@ -24,8 +26,8 @@
   });
 </script>
 
-<div>
-  <h1 class="text-2xl text-center">Population Growth</h1>
+<div class={row}>
+  <h1 class="text-2xl text-center mt-4">Population Growth</h1>
   <div id="chart" class="shadow-lg pb-4">
     <canvas bind:this={chartCanvas} id="myChart" />
   </div>
