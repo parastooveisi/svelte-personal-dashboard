@@ -1,18 +1,13 @@
 <script lang="ts">
   // @ts-nocheck
-
   import * as Pancake from "@sveltejs/pancake";
   import { spring } from "svelte/motion";
+  import { barChartData } from "../stores/barChartData";
+  let data;
 
-  const data = [
-    { year: 2021, income: 4000, expenses: 1000 },
-    { year: 2020, income: 3888, expenses: 800 },
-    { year: 2019, income: 3500, expenses: 1800 },
-    { year: 2018, income: 2200, expenses: 4000 },
-    { year: 2017, income: 2000, expenses: 1000 },
-    { year: 2016, income: 2000, expenses: 1000 },
-    { year: 2015, income: 2000, expenses: 1000 },
-  ];
+  barChartData.subscribe((value) => {
+    data = value;
+  });
 
   const maxExpense = Math.max(...data.map((d) => d.expenses));
   const year0 = Math.min(...data.map((d) => d.year));
