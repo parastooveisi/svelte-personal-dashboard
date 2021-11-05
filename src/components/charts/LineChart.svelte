@@ -25,9 +25,9 @@
   $: area = `${path}L${xScale(maxX)},${yScale(0)}L${xScale(minX)},${yScale(0)}Z`;
 </script>
 
-<div class="h-full shadow-lg p-4">
-  <h1 class="text-2xl text-center mt-4">Active Users</h1>
-  <div class="chart {row}" bind:clientWidth={width} bind:clientHeight={height}>
+<div class="h-full {row} shadow-lg p-4 chart-wrapper">
+  <h1 class="text-2xl text-center">Active Users</h1>
+  <div class="chart" bind:clientWidth={width} bind:clientHeight={height}>
     <svg>
       <!-- y axis -->
       <g class="axis y-axis" transform="translate(0, {padding.top})">
@@ -61,6 +61,10 @@
     width: 100%;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  .chart-wrapper.one {
+    height: 300px;
   }
 
   svg {
