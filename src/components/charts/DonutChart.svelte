@@ -33,15 +33,11 @@
   </div>
 </div>
 
-<style style="postcss">
-  .chart-wrapper {
-    height: 100%;
-  }
-  .chart-wrapper.one {
-    height: 300px;
-  }
+<style lang="postcss">
   #chart {
-    @apply pb-8;
+    @apply mx-auto;
+    @apply pb-2;
     width: 100%;
+    height: 100%;
   }
 </style>

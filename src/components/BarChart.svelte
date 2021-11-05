@@ -100,9 +100,9 @@
     @apply h-96;
   }
 
-  .chart.two {
+  /* .chart.two {
     height: 300px;
-  }
+  } */
 
   @media (min-width: 1280px) {
     .chart {
