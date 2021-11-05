@@ -18,7 +18,7 @@
 </script>
 
 <div class="grid grid-cols-2 mt-6 gap-3">
-  <div class="col-span-2 xl:col-span-1">
+  <div class="col-span-2 md:col-span-1">
     {#if $chartOrder[0].name === "Bar"}
       <BarChart row="one" />
     {:else if $chartOrder[0].name === "Doughnut"}
@@ -27,7 +27,7 @@
       <LineChart row="one" />
     {/if}
   </div>
-  <div class="col-span-2 xl:col-span-1">
+  <div class="col-span-2 md:col-span-1">
     {#if $chartOrder[1].name === "Bar"}
       <BarChart row="one" />
     {:else if $chartOrder[1].name === "Doughnut"}
