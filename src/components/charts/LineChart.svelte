@@ -63,9 +63,9 @@
     margin-right: auto;
   }
 
-  .chart-wrapper.one {
+  /* .chart-wrapper.one {
     height: 300px;
-  }
+  } */
 
   svg {
     position: relative;
