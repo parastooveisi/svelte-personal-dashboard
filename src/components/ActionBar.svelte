@@ -24,8 +24,8 @@
     barChartData.update((n) => [
       {
         year: n[0].year + 1,
-        income: n[0].year + 200,
-        expenses: n[0].year + 100,
+        income: n[0].income + 200,
+        expenses: n[0].expenses + 100,
       },
       ...n,
     ]);

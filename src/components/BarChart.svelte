@@ -21,8 +21,8 @@
   $: $data;
   $: $x2 = year1;
   $: $x1 = year0;
-  $: $expenses;
-  $: $income;
+  $: $income = getIncome();
+  $: $expenses = getExpenses();
 
   barChartData.subscribe((value: BarChartEntry[]) => {
     $data = value;
@@ -31,8 +31,6 @@
     year1 = Math.max(...$data.map((d) => d.year));
     maxIncome = Math.max(...$data.map((d) => d.income));
     years = $data.map((d) => d.year);
-    $income = getIncome();
-    $expenses = getExpenses();
   });
 
   function getIncome() {
