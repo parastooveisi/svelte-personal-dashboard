@@ -4,6 +4,9 @@
   import TopNav from "./components/TopNav.svelte";
   import TopNotification from "./components/TopNotification.svelte";
   import Graphs from "./components/Graphs.svelte";
+  import ActionBar from "./components/ActionBar.svelte";
+  import { notifications, Notification } from "./stores/notifications";
+  import { writable } from "svelte/store";
   let items = [
     {
       title: "Home",
@@ -18,7 +21,12 @@
   const tabChange = (e) => {
     activePage = e.detail;
   };
-  import ActionBar from "./components/ActionBar.svelte";
+  const topNotifications = writable<Notification[]>();
+  $: $topNotifications;
+
+  notifications.subscribe((n) => {
+    $topNotifications = n;
+  });
 </script>
 
 <TailwindCSS />
@@ -29,7 +37,9 @@
   <main role="main" class="w-5/6 h-full col-span-3 mx-auto">
     <TopNav />
     {#if activePage === "Home"}
-      <TopNotification />
+      {#each $topNotifications as notification}
+        <TopNotification {...notification} />
+      {/each}
       <h1 class="text-3xl md:text-5xl mb-4 font-extrabold" id="home">Home</h1>
     {:else if activePage === "Dashboard"}
       <h1 class="text-3xl md:text-5xl mb-4 font-extrabold" id={activePage}>Personal Dashboard</h1>
