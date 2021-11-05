@@ -2,6 +2,13 @@
   import AddUserModal from "./AddUserModal.svelte";
   import { barChartData } from "../stores/barChartData";
   import { charts } from "../stores/charts";
+  import { onDestroy } from "svelte";
+
+  export let currentUserId;
+
+  onDestroy(() => {
+    consumer.subscriptions.remove(subscription);
+  });
 
   let showModal = false;
   let people = [
@@ -27,6 +34,25 @@
 
   const handleToggleModal = () => {
     showModal = !showModal;
+  };
+
+  console.log(currentUserId);
+
+  import createChannelSubscription from "../client/cable.js";
+
+  const { consumer, subscription } = createChannelSubscription({
+    channel: "MessageChannel",
+    user_id: currentUserId,
+  });
+
+  const createMessage = () => {
+    subscription.perform("create_message", {
+      message: {
+        subject: "test subject",
+        body: "test message body",
+      },
+    });
+    showModal = false;
   };
 
   const addBarChartEntry = () => {
@@ -69,10 +95,10 @@
   </div>
 </div>
 
-<AddUserModal title="Add a new user" open={showModal} on:close={() => handleToggleModal()}>
+<AddUserModal title="Send a Message" open={showModal} on:close={() => handleToggleModal()}>
   <div slot="body">
-    <form class="flex flex-col">
-      <label for="first_name">First Name</label>
+    <form class="flex flex-col" on:submit={createMessage}>
+      <label for="first_name">Message Subject</label>
       <input
         id="first_name"
         type="text"
@@ -80,7 +106,7 @@
         class="input border border-gray-400 appearance-none rounded w-full px-3 py-3 mb-3 focus focus:border-indigo-600 focus:outline-none active:outline-none active:border-indigo-600"
         autofocus
       />
-      <label for="last_name">Last Name</label>
+      <label for="last_name">Message Body</label>
       <input
         id="last_name"
         type="text"

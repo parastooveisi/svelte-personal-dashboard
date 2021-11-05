@@ -1,1 +1,3 @@
-<%= component("App") %>
+<%= component("App", { currentUserId: current_user.id }) %>
+
+<%= @messages.count %>

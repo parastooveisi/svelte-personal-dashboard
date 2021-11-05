@@ -1,9 +1,43 @@
 <script>
+  import { onDestroy } from "svelte";
+  import { writable } from "svelte/store";
+  const messageCount = writable(0);
+  $: $messageCount;
+
+  export let currentUserId;
+  onDestroy(() => {
+    consumer.subscriptions.remove(subscription);
+  });
+  import createChannelSubscription from "../client/cable.js";
+
   let menuState = "closed";
 
   const toggleMenuState = () => {
     menuState = menuState === "closed" ? "open" : "closed";
   };
+
+  const { consumer, subscription } = createChannelSubscription(
+    {
+      channel: "MessageChannel",
+      user_id: currentUserId,
+    },
+    {
+      received(data) {
+        switch (data.event) {
+          case "message_created":
+            if (messageCount === undefined) {
+              $messageCount = 1;
+            } else {
+              $messageCount += 1;
+            }
+            break;
+          default:
+            debugger;
+            break;
+        }
+      },
+    }
+  );
 </script>
 
 <nav class="my-3">
@@ -12,7 +46,7 @@
       <button title="Search" class="rounded-full h-8 w-8 flex items-center justify-center bg-gray-200">🔎</button>
     </li>
     <li class="ml-2">
-      <button title="Chat" class="rounded-full h-8 w-8 flex items-center justify-center bg-gray-200">💬</button>
+      <button title="Chat" class="rounded-full h-8 w-8 flex items-center justify-center bg-gray-200">💬{$messageCount === undefined ? "" : $messageCount}</button>
     </li>
     <li class="ml-2">
       <button title="Help" class="rounded-full h-8 w-8 flex items-center justify-center bg-gray-200">?</button>
