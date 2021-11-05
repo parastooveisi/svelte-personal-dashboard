@@ -2,16 +2,18 @@
   // @ts-nocheck
   import * as Pancake from "@sveltejs/pancake";
   import { spring } from "svelte/motion";
+  import { writable } from "svelte/store";
   import { barChartData, BarChartEntry } from "../stores/barChartData";
   let el;
   let w;
+  let max;
 
   let year0;
   let year1;
   let years;
-  let maxExpense;
-  let maxIncome;
 
+  const maxExpense = spring();
+  const maxIncome = spring();
   const x1 = spring();
   const x2 = spring();
   const data = spring();
@@ -21,16 +23,18 @@
   $: $data;
   $: $x2 = year1;
   $: $x1 = year0;
-  $: $expenses;
   $: $income;
+  $: $expenses;
+  $: $maxIncome = max;
+  $: $maxExpense = max;
 
   barChartData.subscribe((value: BarChartEntry[]) => {
     $data = value;
-    maxExpense = Math.max(...$data.map((d) => d.expenses));
-    year0 = Math.min(...$data.map((d) => d.year));
-    year1 = Math.max(...$data.map((d) => d.year));
-    maxIncome = Math.max(...$data.map((d) => d.income));
     years = $data.map((d) => d.year);
+    year0 = Math.min(...years);
+    year1 = Math.max(...years);
+    max = Math.max(Math.max(...$data.map((d) => d.expenses)), Math.max(...$data.map((d) => d.income)));
+
     $income = getIncome();
     $expenses = getExpenses();
   });
@@ -58,7 +62,7 @@
 
 <div class="chart shadow-lg h-full" bind:this={el} bind:clientWidth={w}>
   <div class="background">
-    <Pancake.Chart x1={$x1 - 0.5} x2={$x2} y1={0} y2={maxExpense}>
+    <Pancake.Chart x1={$x1 - 0.5} x2={$x2} y1={0} y2={$maxIncome}>
       <!-- men -->
       <Pancake.Columns data={$income} width={1.0 / $data.length}>
         <div class="column income" />
@@ -72,7 +76,7 @@
   </div>
 
   <div class="foreground">
-    <Pancake.Chart x1={$x1 - 0.5} x2={$x2} y1={0} y2={maxIncome}>
+    <Pancake.Chart x1={$x1 - 0.5} x2={$x2} y1={0} y2={$maxExpense}>
       <Pancake.Grid horizontal count={5} let:value let:first>
         <div class="grid-line horizontal" />
         <span class="y label">{value}</span>
