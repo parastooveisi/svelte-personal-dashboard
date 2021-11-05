@@ -1,5 +1,11 @@
 import { writable } from "svelte/store";
 
+export type BarChartEntry = {
+  year: number;
+  income: number;
+  expenses: number;
+}
+
 export const barChartData = writable([
   { year: 2021, income: 4000, expenses: 1000 },
   { year: 2020, income: 3888, expenses: 800 },
