@@ -31,10 +31,10 @@
 
 <TailwindCSS />
 
-<div class="grid grid-cols-4">
+<div class="flex">
   <NavBar on:tabChange={tabChange} {activePage} {items} />
 
-  <main role="main" class="w-5/6 h-full col-span-3 mx-auto">
+  <main role="main" class="w-full h-full px-8">
     <TopNav />
     {#if activePage === "Home"}
       {#each $topNotifications as notification}
