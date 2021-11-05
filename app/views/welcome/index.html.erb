@@ -1,3 +1,5 @@
-<%= component("App", { currentUserId: current_user.id }) %>
-
-<%= @messages.count %>
+<% if current_user %>
+  <%= component("App", { currentUserId: current_user.id }) %>
+<% else %>
+  <h1 class="text-4xl full-width text-center">Welcome! Please log in</h1>
+<% end %>
