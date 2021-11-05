@@ -1,18 +1,18 @@
 <script lang="ts">
   import { createEventDispatcher } from "svelte";
   const dispatch = createEventDispatcher();
-  export let items;
-  export let activeItem: string;
+  export let items: { title: string; icon: string }[];
+  export let activePage: string;
 </script>
 
 <div class="w-full h-screen flex-shrink flex-grow-0">
   <div class="sticky top-0 p-4 bg-gray-100 h-full">
     <ul class="flex sm:flex-col overflow-hidden content-center justify-center">
       {#each items as item}
-        <li on:click={() => dispatch("tabChange", item)} class="py-2 hover:bg-indigo-300 rounded {item === activeItem ? 'bg-indigo-300' : ''}">
+        <li on:click={() => dispatch("tabChange", item.title)} class="py-2 hover:text-indigo-300 rounded {item.title === activePage ? 'text-indigo-600' : ''}">
           <a class="truncate" href="#">
-            <img alt="home icon" src="//cdn.jsdelivr.net/npm/heroicons@1.0.1/outline/home.svg" class="w-7 sm:mx-2 mx-4 inline" />
-            <span class="hidden sm:inline">{item}</span>
+            <span class="w-7 sm:mx-2 mx-4 inline">{item.icon}</span>
+            <span class="hidden sm:inline">{item.title}</span>
           </a>
         </li>
       {/each}
