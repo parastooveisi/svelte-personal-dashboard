@@ -24,7 +24,7 @@
   <div class="avatars">
     <ul class="grid grid-flow-col auto-cols-min">
       {#each people as person, i}
-        <li class="ml-{i * 4}"><span class="bg-{person.color}">{person.initial}</span></li>
+        <li class="ml-{i * 8}"><span class="bg-{person.color}">{person.initial}</span></li>
       {/each}
       <li class="add-new-person">
         <button class="rounded-full h-6 w-6 flex items-center justify-center bg-green-600 text-gray-100" on:click={handleToggleModal}>+</button>
