@@ -5,24 +5,24 @@
   import TopNotification from "./components/TopNotification.svelte";
   import Graphs from "./components/Graphs.svelte";
   let items = ["Home", "Graphs"];
-  let activeItems = "Home";
+  let activeItem = "Home";
   const tabChange = (e) => {
-    activeItems = e.detail;
+    activeItem = e.detail;
   };
   import ActionBar from "./components/ActionBar.svelte";
 </script>
 
 <TailwindCSS />
 
-<div class="w-full flex flex-col sm:flex-row flex-wrap sm:flex-nowrap py-4 flex-grow">
-  <NavBar on:tabChange={tabChange} {activeItems} {items} />
+<div class="grid grid-cols-4">
+  <NavBar on:tabChange={tabChange} {activeItem} {items} />
 
-  <main role="main" class="w-full h-full flex-grow pt-1 px-3">
+  <main role="main" class="w-full h-full flex-grow pt-1 col-span-3">
     <TopNav />
     <TopNotification />
-    {#if activeItems === "Home"}
+    {#if activeItem === "Home"}
       <h1 class="text-3xl md:text-5xl mb-4 font-extrabold" id="home">Personal Dashboard</h1>
-    {:else if activeItems === "Graphs"}
+    {:else if activeItem === "Graphs"}
       <h1 class="text-3xl md:text-5xl mb-4 font-extrabold" id="graphs">New Tab</h1>
     {/if}
     <ActionBar />

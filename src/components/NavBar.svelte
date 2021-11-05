@@ -5,8 +5,8 @@
   export let activeItem: string;
 </script>
 
-<div class="max-w-md w-full h-screen flex-shrink flex-grow-0 px-4 ">
-  <div class="sticky top-0 p-4 bg-gray-100 rounded-xl w-full h-full">
+<div class="w-full h-screen flex-shrink flex-grow-0">
+  <div class="sticky top-0 p-4 bg-gray-100 h-full">
     <ul class="flex sm:flex-col overflow-hidden content-center justify-center">
       {#each items as item}
         <li on:click={() => dispatch("tabChange", item)} class="py-2 hover:bg-indigo-300 rounded {item === activeItem ? 'bg-indigo-300' : ''}">
