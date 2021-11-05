@@ -17,7 +17,7 @@
 <div class="grid grid-cols-4">
   <NavBar on:tabChange={tabChange} {activeItem} {items} />
 
-  <main role="main" class="w-full h-full flex-grow pt-1 col-span-3">
+  <main role="main" class="w-5/6 h-full col-span-3 mx-auto">
     <TopNav />
     <TopNotification />
     {#if activeItem === "Home"}
