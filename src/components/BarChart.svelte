@@ -6,8 +6,6 @@
 
   export let row;
 
-  let el;
-  let w;
   let max;
 
   let year0;
@@ -62,9 +60,9 @@
   }
 </script>
 
-<div class="h-full shadow-lg">
+<div class="h-full shadow-lg chart-wrapper">
   <h1 class="text-2xl text-center">Income vs Expenses</h1>
-  <div class="chart {row}" bind:this={el} bind:clientWidth={w}>
+  <div class="chart {row}">
     <div class="background">
       <Pancake.Chart x1={$x1 - 0.5} x2={$x2} y1={0} y2={$maxIncome}>
         <!-- men -->
@@ -103,7 +101,7 @@
   }
 
   .chart.two {
-    @apply h-96;
+    height: 300px;
   }
 
   @media (min-width: 1280px) {

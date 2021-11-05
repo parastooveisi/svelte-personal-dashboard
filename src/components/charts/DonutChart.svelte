@@ -26,15 +26,22 @@
   });
 </script>
 
-<div class={row}>
-  <h1 class="text-2xl text-center mt-4">Population Growth</h1>
-  <div id="chart" class="shadow-lg pb-4">
+<div class="chart-wrapper {row} h-full shadow-lg">
+  <h1 class="text-2xl text-center">Population Growth</h1>
+  <div id="chart">
     <canvas bind:this={chartCanvas} id="myChart" />
   </div>
 </div>
 
-<style>
+<style style="postcss">
+  .chart-wrapper {
+    height: 100%;
+  }
+  .chart-wrapper.one {
+    height: 300px;
+  }
   #chart {
+    @apply pb-8;
     width: 100%;
   }
 </style>
