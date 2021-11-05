@@ -27,7 +27,7 @@
 </script>
 
 <div class={row}>
-  <h1 class="text-2xl text-center">Population Growth</h1>
+  <h1 class="text-2xl text-center mt-4">Population Growth</h1>
   <div id="chart" class="shadow-lg pb-4">
     <canvas bind:this={chartCanvas} id="myChart" />
   </div>

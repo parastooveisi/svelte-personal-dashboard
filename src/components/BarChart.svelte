@@ -62,32 +62,35 @@
   }
 </script>
 
-<div class="chart {row} shadow-lg h-full" bind:this={el} bind:clientWidth={w}>
-  <div class="background">
-    <Pancake.Chart x1={$x1 - 0.5} x2={$x2} y1={0} y2={$maxIncome}>
-      <!-- men -->
-      <Pancake.Columns data={$income} width={1.0 / $data.length}>
-        <div class="column income" />
-      </Pancake.Columns>
+<div class="h-full shadow-lg">
+  <h1 class="text-2xl text-center">Income vs Expenses</h1>
+  <div class="chart {row}" bind:this={el} bind:clientWidth={w}>
+    <div class="background">
+      <Pancake.Chart x1={$x1 - 0.5} x2={$x2} y1={0} y2={$maxIncome}>
+        <!-- men -->
+        <Pancake.Columns data={$income} width={1.0 / $data.length}>
+          <div class="column income" />
+        </Pancake.Columns>
 
-      <!-- women -->
-      <Pancake.Columns data={$expenses} width={1.0 / $data.length}>
-        <div class="column expenses" />
-      </Pancake.Columns>
-    </Pancake.Chart>
-  </div>
+        <!-- women -->
+        <Pancake.Columns data={$expenses} width={1.0 / $data.length}>
+          <div class="column expenses" />
+        </Pancake.Columns>
+      </Pancake.Chart>
+    </div>
 
-  <div class="foreground">
-    <Pancake.Chart x1={$x1 - 0.5} x2={$x2} y1={0} y2={$maxExpense}>
-      <Pancake.Grid horizontal count={5} let:value let:first>
-        <div class="grid-line horizontal" />
-        <span class="y label">{value}</span>
-      </Pancake.Grid>
+    <div class="foreground">
+      <Pancake.Chart x1={$x1 - 0.5} x2={$x2} y1={0} y2={$maxExpense}>
+        <Pancake.Grid horizontal count={5} let:value let:first>
+          <div class="grid-line horizontal" />
+          <span class="y label">{value}</span>
+        </Pancake.Grid>
 
-      <Pancake.Grid vertical ticks={years} let:value>
-        <span class="x label">{value}</span>
-      </Pancake.Grid>
-    </Pancake.Chart>
+        <Pancake.Grid vertical ticks={years} let:value>
+          <span class="x label">{value}</span>
+        </Pancake.Grid>
+      </Pancake.Chart>
+    </div>
   </div>
 </div>
 
@@ -105,7 +108,7 @@
 
   @media (min-width: 1280px) {
     .chart {
-      height: 100%;
+      height: 80%;
     }
   }
 
